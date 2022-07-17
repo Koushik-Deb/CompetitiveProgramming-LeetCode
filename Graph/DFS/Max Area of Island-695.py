@@ -1,5 +1,5 @@
 class Solution:
-    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+    def maxAreaOfIsland(self, grid) -> int:
         maxTotal = [0]
         
         visited = [[0]*len(grid[0]) for i in range(len(grid))]
