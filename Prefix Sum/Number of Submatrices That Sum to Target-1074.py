@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/discuss/1162927/Optimization-from-Brute-Force-to-Optimized-Solution-w-Easy-Explanation
+
 class Solution:
     def numSubmatrixSumTarget(self, matrix: List[List[int]], target: int) -> int:
         m, n = len(matrix), len(matrix[0])
