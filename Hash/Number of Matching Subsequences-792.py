@@ -1,21 +1,49 @@
-#NEED TO IMPLEMENT TRIE BASED SOLUTION AS WELL
-
 class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
+        def insert_in_trie(word: str):
+            curr = trie
+            for char in word:
+                if char not in curr:
+                    curr[char] = {}
+                curr = curr[char]
+            if None in curr:
+                curr[None] += 1  # keeps count of repeated words
+            else:
+                curr[None] = 1
+            
+        S = len(s)
+        trie = {}
+        for word in words:
+            insert_in_trie(word)
+        ans = 0
+		# queue contains tuples (node, idx), where node is the last visited node on the current
+		# branch, and idx is indicates that so far the branch is a subsequence of s[:idx]
+        queue = [(trie, 0)]
+        while queue:
+            curr, i = queue.pop()
+            for char in curr:
+                if char == None:
+                    ans += curr[None]
+                else:
+                    for j in range(i, S):
+                        if s[j] == char:
+                            queue.append((curr[char], j + 1))
+                            break
+        return ans
         
         #Recursive approach
-        def recursion(word, i, j, s):
-            if j>=len(s) and i<len(word): return 0
+        # def recursion(word, i, j, s):
+        #     if j>=len(s) and i<len(word): return 0
             
-            if i>=len(word): return 1
+        #     if i>=len(word): return 1
         
-            if word[i]==s[j]: return recursion(word,i+1,j+1,s)
-            else: return recursion(word,i,j+1,s)
+        #     if word[i]==s[j]: return recursion(word,i+1,j+1,s)
+        #     else: return recursion(word,i,j+1,s)
             
-        count = 0
-        for word, cnt in Counter(words).items():
-            count+=recursion(word,0,0,s)*cnt
-        return count
+        # count = 0
+        # for word, cnt in Counter(words).items():
+        #     count+=recursion(word,0,0,s)*cnt
+        # return count
         
         
         
