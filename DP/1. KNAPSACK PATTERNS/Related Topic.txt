@@ -1,0 +1,7 @@
+1. 0/1 Knapsack
+2. Subset sum problem
+3. Count of Subset sum
+4. Minimum Subset sum diff
+5. Equal sum partition
+6. Target sum
+7. Number of Subset given diff
